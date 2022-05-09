@@ -1,36 +1,38 @@
-<div class="container-fluid">
 
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">Daftar Usulan dalam Pengecekan Dinas</h4>
+ <div class="col-md-12" style="text-align:left">
 
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Kelurahan</a></li>
-                        <li class="breadcrumb-item active"> Usulan dalam penggecekan</li>
-                    </ol>
-                </div>
+<div class="note note-info" style="margin:4px"><B>DOKUMEN BERITA ACARA </B>
 
-            </div>
-        </div>
-    </div>
-    <!-- end page title -->
+<?php	 
+  $fo=public_path('DOKUMEN_BA/Kelurahan ').$kelurahan;
+ if(is_dir($fo)){ 
+ 		$katabaru='baru';
+ 		?><br>
+		File tersimpan :	<br>		
+		<div id="tersimpan_ba">
+			
+		</div>
+		<script>
+			daftar_file_ba("Kelurahan {{$kelurahan}}", 'tersimpan_ba');
+		</script>
+			
+<?php } else { 
+		$katabaru='';
+		?>
+		<div id="tersimpan_ba"></div>
+		<?php } ?>
 
-    <div class="row" >
-        <div class="col-md-12">
-            <div class="card">
-                  
-                <div class="card-body">
-                    
-                    <table id="datatable2" class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+		
+</div>
+</div>	
+                    <table id="datatable" class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>No</th>
+                            <th>Rank</th>
                             <th>Register</th>
                             <th>Biodata</th>
                             <th>Profil Rumah</th>
+                            
                            
                         </tr>
                         </thead>
@@ -45,7 +47,11 @@
                             $no++;
                         ?>
                         <tr id="tr_usulan_{{$r->id}}">
-                            <td width="10px">{{$no}}</td>
+                            <td width="10px" style='font-size:28px;color:red'>
+                            @if($r->rank!=99)
+                                {{$r->rank}}
+                            @endif
+                            </td>
 
                             <td >
                                 <b>Tanggal Masuk:</b><br>{{$r->tgl_masuk}}<br>
@@ -69,12 +75,15 @@
                                 <br><br>
                                 <B>Titik Lokasi:</B>
                                 
-                              
+                               
                                 <br>
                                 <div id="div_xy_{{$r->id}}">
                                 X={{$r->x}}<br> Y={{$r->y}}
+                                
+                                
                                 </div>
                                
+
                             </td>
                         
                             <td>
@@ -83,12 +92,11 @@
                             <!--------Dokumen kelengkapan--->
                             <?php
                             echo "<b>Status Adm. : ".$r->st_adm_hasil."</b><br>";
-                            echo "Legalitas : ".$r->st_adm_legal."<br/>";
-                            echo "Atas nama : ".$r->st_adm_an."<br/>";
-                            echo "<b>Status Teknis : ".$r->st_tek_hasil."</b><br>";
-                            echo "Kerusakan : ".$r->st_tek_rusak;
-                            ?>
-                             <br>
+        echo "Legalitas : ".$r->st_adm_legal."<br/>";
+        echo "Atas nama : ".$r->st_adm_an."<br/>";
+        echo "<b>Status Teknis : ".$r->st_tek_hasil."</b><br>";
+        echo "Kerusakan : ".$r->st_tek_rusak;
+        ?><br>
                         <b>Dokumen</b>:
                         <a style="cursor:pointer " onclick="$('#div_dokumen_<?php echo $r->id ?>').toggle()">
                         <strong><i class="fa fa-angle-double-down"></i></strong> </a>	
@@ -98,7 +106,10 @@
                         <ol style='list-style-position: inside; padding-left: 0' 
                         id="ol_<?php echo $r->id ?>">
                         </ol>
+                        <script>
+                        list_dokumen(<?php echo $r->id ?>,"ol_<?php echo $r->id ?>");
                         
+                        </script>
                         </div>
                         <br>
                         
@@ -107,6 +118,7 @@
                             </td>
 
                            
+                            
                         </tr>
                         <script>
 						   
@@ -115,37 +127,4 @@
                         </tbody>
                     </table>
                     
-                    
-                    
-
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-    <!-- end row -->
-</div>
-
-
-<script>
-
-function show_all_ajax()
-    {
-        @foreach($rs as $r)
-                        
-            list_dokumen(<?php echo $r->id ?>,"ol_<?php echo $r->id ?>");
-                              
-        @endforeach
-    } 
-
-    $( document ).ready(function() {
-       //show_all_ajax();
-    $('#datatable2').DataTable({
-        lengthChange: true,
-        "fnDrawCallback": function( oSettings ) {
-            show_all_ajax();
-        }
-     });	
-    });
-</script>
+           

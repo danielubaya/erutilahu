@@ -84,10 +84,6 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.loginbody{
-  background-image: url('../images/tile1.jpg'); 
-  background-repeat: repeat-xy;
-}
 
 hr {
   margin: 1rem 0;

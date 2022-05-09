@@ -49,10 +49,17 @@
                 <span>Perankingan </a>
         </li>
         <li class="menu-title">Pegerjaan Rutilahu</li>
-
         <li>
             <a href="#" class="waves-effect"
-            onclick="pengerjaan_proses('utama')"
+            onclick="usulan_daftartunggu('KELURAHAN')"
+            >  
+            <i class="uil-circle-layer" style="color:green"></i>
+                <span>Daftar Tunggu</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="waves-effect"
+            onclick="usulan_pengerjaan('KELURAHAN')"
             >  
                 <i class="uil-brush-alt"  style="color:green"></i>
                 <span>Dalam Pengerjaan  </a>
@@ -60,29 +67,32 @@
        
         <li>
             <a href="#" class="waves-effect"
-            onclick="pengerjaan_selesai('utama')"
+            onclick="usulan_selesai('KELURAHAN')"
             >  
                 <i class="uil-star" style="color:green"></i>
                 <span>Selesai Pengerjaan </a>
         </li>
        
         
-        <li class="menu-title">Arsip dan Summary</li>
-        <li>
-            <a href="#" class="waves-effect"
-            onclick="usulan_arsip('utama')"
-            >  
-            <i class="uil-box" style="color:red"></i>
-                <span>Arsip Usulan</span>
-            </a>
-        </li>
-
+        
+        <li class="menu-title">Summary</li>
+        
         <li>
             <a href="#" class="waves-effect"
             onclick="peta_usulan('utama')"
             >
                 <i class="uil-location-point" style="color:red"></i>
                 <span>Peta Rutilahu</span>
+            </a>
+        </li>
+
+        <li class="menu-title">Lain-lain</li>
+        <li>
+            <a href="#" class="waves-effect"
+            onclick="usulan_nonrutil('KELURAHAN')"
+            >  
+            <i class="uil-box" style="color:red"></i>
+                <span>Usulan NonRutilahu</span>
             </a>
         </li>
 

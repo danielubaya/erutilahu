@@ -18,6 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+
+.loginbody{
+  background-image: url("{{ asset('/images/tile1.jpg')}}"); 
+  background-repeat: repeat-xy;
+}
+    </style>
 </head>
 <body class="loginbody">
     <div id="app">

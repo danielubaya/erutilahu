@@ -3,13 +3,14 @@
 try{
 
 $fo= public_path('DOKUMEN/').$id;
+$fo2=asset('DOKUMEN')."/".$id;
 	if ($dh = opendir($fo)){
     while (($f = readdir($dh)) !== false){
     	if(($f!='.') and ($f!='..') ){
 			
       ?>
         
-      	<li><a href="<?php echo $fo ?>/<?php echo $f ?>" class="" target="_blank"><?php echo $f ?>  </a> </li>
+      	<li><a href="<?php echo $fo2 ?>/<?php echo $f ?>" class="" target="_blank"><?php echo $f ?>  </a> </li>
       	  
       <?php
     }}

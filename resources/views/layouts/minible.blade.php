@@ -21,7 +21,8 @@
         <!-- Responsive datatable examples -->
         <link href="{{asset('minible/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
         <link href="{{asset('minible/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />     
-
+        <link href="{{asset('minible/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}"  rel="stylesheet" type="text/css" />  
+       
         
         <!-- Bootstrap Css -->
         <link href="{{asset('minible/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -72,6 +73,26 @@
         <script>
             var pubdir="{{asset('')}}";
         </script>
+
+        <style>
+            .gede {
+            zoom: 1;
+            transform: scale(2);
+            -ms-transform: scale(2);
+            -webkit-transform: scale(2);
+            -o-transform: scale(2);
+            -moz-transform: scale(2);
+            transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            -o-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            }
+
+            .datepicker {
+                z-index: 99999 !important;
+            }
+        </style>
     </head>
 
     
@@ -249,11 +270,12 @@
         <script src="{{asset('minible/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
       
         <script src="{{asset('minible/libs/select2/js/select2.min.js')}}"></script>
+        <script src="{{asset('minible/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
         
         <!-- App js -->
         
         <script src="{{asset('minible/js/app.js')}}"></script>
-        <script src="{{asset('js/action.js')}}"></script>
+        <script src="{{asset('js/action2.js')}}"></script>
         <script src="{{asset('js/ajaxfileupload.js')}}"></script>
 
     </body>

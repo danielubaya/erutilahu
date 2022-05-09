@@ -1,15 +1,16 @@
+@if($pakaiheader)
 <div class="container-fluid">
 
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0">Daftar Usulan dalam Pengecekan Dinas</h4>
+                <h4 class="mb-0">Usulan Dalam Daftar Tunggu </h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Kelurahan</a></li>
-                        <li class="breadcrumb-item active"> Usulan dalam penggecekan</li>
+                        <li class="breadcrumb-item active"> Daftar Tunggu</li>
                     </ol>
                 </div>
 
@@ -24,6 +25,8 @@
                   
                 <div class="card-body">
                     
+
+@endif                
                     <table id="datatable2" class="table table-bordered dt-responsive " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
@@ -31,7 +34,7 @@
                             <th>Register</th>
                             <th>Biodata</th>
                             <th>Profil Rumah</th>
-                           
+                          
                         </tr>
                         </thead>
 
@@ -45,8 +48,11 @@
                             $no++;
                         ?>
                         <tr id="tr_usulan_{{$r->id}}">
-                            <td width="10px">{{$no}}</td>
-
+                        <td width="10px" style='font-size:28px;color:red'>
+                            @if($r->rank!=99)
+                                {{$r->rank}}
+                            @endif
+                            </td>
                             <td >
                                 <b>Tanggal Masuk:</b><br>{{$r->tgl_masuk}}<br>
                                 <b>Jenis:</b><br>{{$r->jenis}}<br>
@@ -105,7 +111,15 @@
 
                        
                             </td>
-
+                        @if(!$pakaiheader)
+                        <td>
+                            <button class='btn btn-info'
+                            onclick="mulai_pengerjaan('<?php echo csrf_token() ?>',<?php echo $r->id ?>)"
+                            >
+                                Mulai Pengerjaan
+                            </button>
+                        </td>
+                        @endif
                            
                         </tr>
                         <script>
@@ -140,12 +154,12 @@ function show_all_ajax()
     } 
 
     $( document ).ready(function() {
-       //show_all_ajax();
-    $('#datatable2').DataTable({
-        lengthChange: true,
-        "fnDrawCallback": function( oSettings ) {
-            show_all_ajax();
-        }
-     });	
+       show_all_ajax();
+    //$('#datatable2').DataTable({
+    //    lengthChange: true,
+    //    "fnDrawCallback": function( oSettings ) {
+    //        show_all_ajax();
+    //    }
+    // });	
     });
 </script>

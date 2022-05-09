@@ -77,18 +77,24 @@
                         <i style='margin-top:-10px' class="uil-location-point btn btn-sm btn-info"></i></a>
 
                                 <br>
-                                <div id="div_xy_{{$r->id}}"></div>
-                                <script>
-                                    show_xy("div_xy_{{$r->id}}",{{ $r->id}});
-                                </script>
-
+                                <div id="div_xy_{{$r->id}}">
+                                    X={{$r->x}}<br> Y={{$r->y}}
+                                
+                                </div>
+                                
                             </td>
                         
                             <td>
                         
                         <div id="div_profil_{{$r->id}}"></div>
                             <!--------Dokumen kelengkapan--->
-                        
+                            <?php
+                            echo "<b>Status Adm. : ".$r->st_adm_hasil."</b><br>";
+        echo "Legalitas : ".$r->st_adm_legal."<br/>";
+        echo "Atas nama : ".$r->st_adm_an."<br/>";
+        echo "<b>Status Teknis : ".$r->st_tek_hasil."</b><br>";
+        echo "Kerusakan : ".$r->st_tek_rusak;
+        ?><br>
                             <a class="btn btn-sm btn-warning" 
                         style="margin-top: 4px;margin-bottom: 4px;"  
                         data-bs-target="#modal_set_profil" data-bs-toggle="modal" 
@@ -104,11 +110,7 @@
                         <ol style='list-style-position: inside; padding-left: 0' 
                         id="ol_<?php echo $r->id ?>">
                         </ol>
-                        <script>
-                        list_dokumen(<?php echo $r->id ?>,"ol_<?php echo $r->id ?>");
-                        show_profil("div_profil_{{$r->id}}",<?php echo $r->id ?>);
-                        
-                        </script>
+                       
                         </div>
                         <br>
                         <a class="btn btn-sm btn-warning" 
@@ -123,13 +125,17 @@
 
                            
                             <td style="width:30px">
-                            <button style="width:80px"
+                            <button style="width:100px"
                         class="btn btn-success btn-sm"
                         onclick="kirim_ke_ranking('<?php echo csrf_token() ?>',<?php echo $r->id ?>)">Ke Pe-ranking-an</button>
                         <br><br>
-                        <button style="width:80px"
+                        <button style="width:100px"
+                        class="btn btn-warning btn-sm"
+                        onclick="kirim_ke_kelurahan('<?php echo csrf_token() ?>',<?php echo $r->id ?>)">Kembalikan Usulan</button>
+                        <br><br>
+                        <button style="width:100px"
                         class="btn btn-danger btn-sm"
-                        onclick="kirim_ke_kotak('<?php echo csrf_token() ?>',<?php echo $r->id ?>)">Masuk ke Kotak</button>
+                        onclick="kirim_ke_kotak('<?php echo csrf_token() ?>',<?php echo $r->id ?>)">Masuk ke Non-Rutilahu</button>
                         
                             </td>
                         </tr>
@@ -214,8 +220,25 @@
 </div>
 
 
-<script>
-    $('#datatable').DataTable({
-        lengthChange: true,});
 
+<script>
+
+function show_all_ajax()
+    {
+        @foreach($rs as $r)
+                        
+            list_dokumen(<?php echo $r->id ?>,"ol_<?php echo $r->id ?>");
+                               
+        @endforeach
+    } 
+
+    $( document ).ready(function() {
+       //show_all_ajax();
+    $('#datatable').DataTable({
+        lengthChange: true,
+        "fnDrawCallback": function( oSettings ) {
+            show_all_ajax();
+        }
+     });	
+    });
 </script>
